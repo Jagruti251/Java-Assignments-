@@ -1,0 +1,236 @@
+/*
+ * 1) create a multi-threaded application by using "extends Thread " method.
+ * create 2 threads. they should display characters from A to J.
+ */
+package jjjjjj;
+
+class TH1 extends Thread
+{
+	public void run()
+	{
+		for(char i='a';i<='j';i++)
+		{
+			System.out.println(Thread.currentThread().getName()+"\t"+i);
+			try
+			{
+				Thread.sleep(200);
+			}
+			catch(InterruptedException e)
+			{
+				e.printStackTrace();
+			}
+		}
+	}
+}
+public class Demo
+{
+	public static void main(String[] args) 
+	{
+		TH1 t1=new TH1();
+		TH1 t2=new TH1();
+		t1.setName("first");
+		t2.setName("Second");
+		t1.start();
+		t2.start();
+		
+	}
+}
+
+
+
+/*2) above program  using "implements Runnable" method.
+ * create 2 threads. they should display characters from A to J.
+ */
+package jjjjjj;
+
+class TH1 implements Runnable
+{
+	synchronized public void run()
+	{
+		for(char i='a';i<='j';i++)
+		{
+			System.out.println(Thread.currentThread().getName()+"\t"+i);
+			
+		}
+	}
+}
+public class Demo
+{
+	public static void main(String[] args) 
+	{
+		
+		TH1 ob=new TH1();
+		Thread t1=new Thread(ob);
+		Thread t2=new Thread(ob);
+		t1.setName("first");
+		t2.setName("Second");
+		t1.start();
+		t2.start();
+		
+	}
+}
+
+
+/*
+ * 3) create 3 threads in such a way that while one thread is executing, 2
+ * threads cannot interfere. they should display output "Exec  0" to "Exec 5"
+ */
+
+package jjjjjj;
+
+class TH1 implements Runnable
+{
+	synchronized public void run()
+	{
+		for(int i=1;i<=5;i++)
+		{
+			System.out.println("Exec\t"+Thread.currentThread().getName()+"\t"+i);
+		}
+	}
+}
+public class Demo
+{
+	public static void main(String[] args) 
+	{
+		
+		TH1 ob=new TH1();
+		Thread t1=new Thread(ob);
+		Thread t2=new Thread(ob);
+		Thread t3=new Thread(ob);
+		t1.setName("first");
+		t2.setName("Second");
+		t3.setName("Third");
+		t1.start();
+		t2.start();
+		t3.start();
+		
+	}
+}
+
+
+
+/*
+ * 4)create 2 threads. Write a program which displays number 1 to 10 using class lock. 
+[hint:- use "implements Runnable" and synchronized block]
+
+
+ */
+
+package jjjjjj;
+
+class TH1 implements Runnable
+{
+	synchronized public void run()
+	{
+		for(int i=1;i<=10;i++)
+		{
+			System.out.println(Thread.currentThread().getName()+"\t"+i);
+		}
+	}
+}
+public class Demo
+{
+	public static void main(String[] args) 
+	{
+		
+		TH1 ob=new TH1();
+		Thread t1=new Thread(ob);
+		Thread t2=new Thread(ob);
+		t1.setName("first");
+		t2.setName("Second");
+		
+		t1.start();
+		t2.start();
+	
+		
+	}
+}
+
+
+
+
+
+/*
+ * 5) create 2 threads one thread will display 1 to 50 second thread will
+ * display 50 to 1 both the threads should start simultaneously.
+ * 
+ * (use implements method)
+ */
+package jjjjjj;
+
+class perform
+{
+	synchronized public void printf()
+	{
+		for(int i=1;i<=50;i++)
+		{
+			System.out.println("t1\t"+i);
+		}
+	}
+	synchronized public void printr()
+	{
+		for(int i=50;i>=1;i--)
+		{
+			System.out.println("t2\t"+i);
+		}
+	}
+}
+
+class forword implements Runnable
+{
+	perform ref;
+
+	public forword(perform ref) 
+	{
+		
+		this.ref = ref;
+		
+	}
+	public void run() 
+	{
+		ref.printf();
+		try
+		{
+			Thread.sleep(200);
+		}
+		catch(InterruptedException ie)
+		{
+		}
+	}
+}
+class reverse implements Runnable
+{
+	perform ref;
+
+	public reverse(perform ref) 
+	{
+		
+		this.ref = ref;
+	}
+	public void run() 
+	{
+		ref.printr();
+		try
+		{
+			Thread.sleep(200);
+		}
+		catch(InterruptedException ie)
+		{
+		}
+	}
+}
+
+public class Demo
+{
+	public static void main(String[] args) 
+	{
+		perform p=new perform();
+		forword f=new forword(p);
+		reverse r=new reverse(p);
+		
+		Thread t1=new Thread(f);
+		Thread t2=new Thread(r);
+		t1.start();
+		t2.start();
+	}
+}

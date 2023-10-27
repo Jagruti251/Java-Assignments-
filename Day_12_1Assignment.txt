@@ -1,0 +1,314 @@
+
+1)create a customer class with following attributes
+	custid
+	custname
+	address
+	age
+create one instance of it and store it in a file. (Serialization).
+now open a file, read the object and read its contents . (Deserialization)
+sol:-
+import java.io.*;
+public class Customer implements Serializable
+{
+	int custid;
+	String custname;
+	String address;
+	int age;
+	Customer(int custid, String custname, String address, int age)
+	{
+		this.custid = custid;
+		this.custname = custname;
+		this.address = address;
+		this.age = age;
+	}
+	public static void main(String args[])
+	{
+		try
+		{
+			FileOutputStream fos = new FileOutputStream("C:\\Users\\admin\\Desktop\\private\\Day_12\\Day_12\\File_Handling_1\\c.txt");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(new Customer(20,"KL Rahul","Bandra",32));
+			fos.close();
+			oos.close();
+		}
+		catch(Exception ie)
+		{}
+		try
+		{
+			FileInputStream fis = new FileInputStream("C:\\Users\\admin\\Desktop\\private\\Day_12\\Day_12\\File_Handling_1\\c.txt");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			Customer customer = (Customer)ois.readObject();
+			System.out.println(customer.custid+"\t"+customer.custname+"\t"+customer.address+"\t"+customer.age);
+			fis.close();
+			ois.close();
+		}
+		catch(Exception ie)
+		{}
+	}
+}		
+
+
+2) Person class implements Serializable with
+	private String name
+	private int age
+
+		getters and setters
+		parameterized constructor
+
+Student extends Person
+	private int rollno
+		getter and setters
+		parameterized constructor accepting name,age and rollno
+			pass name and age to the super constructor
+
+
+Demo class with main
+	create one object of Student, write it inside file and then read.
+sol:
+import java.io.*;
+class Person implements Serializable
+{
+	private String name;
+	private int age;
+	Person(String name, int age)
+	{
+		this.name = name;
+		this.age = age;
+	}
+	public String getname()
+	{
+		return name;
+	}
+	public int getage()
+	{
+		return age;
+	}
+	public void setname(String name)
+	{
+		this.name = name;
+	}
+	public void setage(int age)
+	{
+		this.age = age;
+	}
+}
+class Student extends Person
+{
+	private int rollno;
+	Student(String name, int age, int rollno)
+	{
+		super(name,age);
+		this.rollno = rollno;
+	}
+	public int getrollno()
+	{
+		return rollno;
+	}
+	public void setrollno(int rollno)
+	{
+		this.rollno = rollno;
+	}
+}
+public class Demo
+{
+	public static void main(String args[])
+	{
+		try
+		{
+			FileOutputStream fos = new FileOutputStream("C:\\Users\\admin\\Desktop\\private\\Day_12\\Day_12\\File_Handling_1\\c.txt");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(new Student("AB Deviliers",37,1));
+			fos.close();
+			oos.close();
+		}
+		catch(Exception ie)
+		{}
+		try
+		{
+			FileInputStream fis = new FileInputStream("C:\\Users\\admin\\Desktop\\private\\Day_12\\Day_12\\File_Handling_1\\c.txt");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			Student student = (Student)ois.readObject();
+			System.out.println(student.getrollno()+"\t"+student.getage()+"\t"+student.getname());
+			fis.close();
+			ois.close();
+		}
+		catch(Exception ie)
+		{}
+	}
+}
+
+package nnnn;
+
+import java.io.*;
+
+/*
+ * 3) Define a class "Student" with private int rollno and private String name
+ * and private int age; setters and getters
+ * 
+ * create 2 objects of Student and write them inside filesystem and thereafter
+ * read both the objects and display.
+ */
+
+class Student implements Serializable
+{
+	private int roolno;
+	private String name;
+	private int age;
+	
+	public Student(int roolno, String name, int age) {
+		super();
+		this.roolno = roolno;
+		this.name = name;
+		this.age = age;
+	}
+
+	public int getRoolno() {
+		return roolno;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public int getAge() {
+		return age;
+	}
+	
+	@Override
+	public String toString() {
+		return "Student [roolno=" + roolno + ", name=" + name + ", age=" + age + "]";
+	}
+}
+
+public class Demo
+{
+	public static void main(String[] args) 
+	{
+		Student S1=new Student(49,"Nikhil",23);
+		Student S2=new Student(11,"amisha",23);
+		
+		try 
+		{
+			FileOutputStream fos=new FileOutputStream("D:\\ForClient\\Object3.txt");
+			ObjectOutputStream oos=new ObjectOutputStream(fos);
+			
+			oos.writeObject(S1);
+			oos.writeObject(S2);
+			oos.close();
+			oos.close();
+			FileInputStream fis=new FileInputStream("D:\\ForClient\\Object3.txt");
+			ObjectInputStream ois=new ObjectInputStream(fis);
+			
+			Student S3=(Student)ois.readObject();
+			Student S4=(Student)ois.readObject();
+			
+			System.out.println(S3);
+			System.out.println(S4);
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+		
+				
+	}
+}
+
+
+package nnnn;
+
+import java.io.*;
+
+/*
+ * 4) create two classes
+ * Engine
+ *
+ *		private int speed
+ *		private String type
+ *			setters and getter
+ *	Car
+ *		private Engine engine;
+ *	private String modelname;
+ *			setters and getters
+ */
+
+class Engine implements Serializable
+{
+	private int speed;
+	private String type;
+	
+	public Engine(int speed, String type) 
+	{
+		super();
+		this.speed = speed;
+		this.type = type;
+	}
+	public int getSpeed() 
+	{
+		return speed;
+	}
+	public String getType() 
+	{
+		return type;
+	}
+	@Override
+	public String toString() {
+		return "Engine [speed=" + speed + ", type=" + type + "]";
+	}
+	
+}
+class Car implements Serializable
+{
+	private Engine engine;
+	private String modelname;
+	
+	public Car(String modelname) {
+		super();
+		this.modelname = modelname;
+	}
+	public void setEngine(Engine engine) {
+		this.engine = engine;
+	}
+	public Engine getEngine() {
+		return engine;
+	}
+	public String getModelname() {
+		return modelname;
+	}
+	@Override
+	public String toString() {
+		return "Car [engine=" + engine + ", modelname=" + modelname + "]";
+	}
+	
+}
+
+public class Demo
+{
+	public static void main(String[] args) 
+	{
+		Car c1=new Car("TATA");
+		c1.setEngine(new Engine(140,"sport"));
+		
+		try 
+		{
+			FileOutputStream fos=new FileOutputStream("D:\\ForClient\\Object4.txt");
+			ObjectOutputStream oos=new ObjectOutputStream(fos);
+			
+			oos.writeObject(c1);
+			c1=null;
+			
+			FileInputStream fis=new FileInputStream("D:\\ForClient\\Object4.txt");
+			ObjectInputStream ois=new ObjectInputStream(fis);
+			
+			Car c2=(Car)ois.readObject();
+			System.out.println(c2);
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+	}
+}
+
+
+

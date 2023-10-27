@@ -1,0 +1,196 @@
+/*
+ * 1) create a multi-threaded application by using Thread pool.create 2 threads.
+ * each thread should display characters from A to J. [ make sure while one
+ * thread executes , other thread should not interfere ]
+ */
+
+package jjjjjj
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+class myTh implements Runnable
+{
+	synchronized static void disp() 
+	{
+		for(char i='A';i<='J';i++)
+		{
+			System.out.println(Thread.currentThread()+"\t"+i);
+		}
+	}
+	
+	public void run()
+	{
+		disp();
+	}
+}
+public class Demo
+{
+	public static void main(String[] args)
+	{
+		ExecutorService exec=Executors.newFixedThreadPool(2);
+		myTh m=new  myTh();
+		for(int i=0;i<3;i++)
+		{
+			exec.execute(m);
+		}
+		exec.shutdown();
+	}
+}
+
+
+
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+/*
+ * 2) create a multi-threaded application by using Thread pool.create 2 threads.
+ * each thread should display numbers from 1 to 10. [ make sure while one thread
+ * executes , other thread should not interfere ] Also when first thread
+ * displays nos. from 1 to 5 it should released the lock and allow other thread
+ * to display nos. from 1 to 5 and then previous thread will display nos. from 6
+ * to 10 and so on.
+ */
+
+class Thrd implements Runnable
+{
+
+	 void perform()
+	{
+		 synchronized(this)
+		 {
+		for(int i=1;i<=10;i++)
+		{
+			System.out.println(Thread.currentThread()+"\t"+i);
+			if(i==5)
+			{
+				try 
+				{
+					wait();
+				} catch (InterruptedException e) 
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			notify();
+		}
+	}
+}
+	 public void run()
+	{
+		perform();
+	}
+}
+public class Demo
+{
+	public static void main(String[] args) 
+	{   Thrd t=new Thrd();
+		ExecutorService exec=Executors.newFixedThreadPool(2);
+		exec.execute(t);
+		exec.execute(t);
+		exec.shutdown();
+	}
+}
+
+
+package nnnn;
+
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.locks.ReentrantLock;
+
+/*
+ * 3) create a multi-threaded application by using Thread pool and ReentrantLock 
+ * (explicit locking) .create 2 threads. each thread should display characters from A to J.
+ *  [ make sure while one thread executes , other thread should not interfere ]
+ */
+
+class Thrd implements Runnable
+{
+	ReentrantLock MyLock=new ReentrantLock();
+	public void run()
+	{
+		MyLock.lock();
+		
+			for(char i='A';i<='J';i++)
+			{
+				System.out.println(Thread.currentThread()+"\t"+i);
+			}
+		MyLock.unlock();
+	}
+}
+public class Demo
+{
+	public static void main(String[] args) 
+	{   Thrd t=new Thrd();
+		ExecutorService exec=Executors.newFixedThreadPool(2);
+		exec.execute(t);
+		exec.execute(t);
+		exec.shutdown();
+	}
+}
+
+
+package nnnn;
+
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.ReentrantLock;
+
+/*
+ * 4) create a multi-threaded application by using Thread pool and ReentrantLock.
+ * create 2 threads. each thread should display numbers from 1 to 10. 
+ * [ make sure while one thread executes , other thread should not interfere ]
+ *Also when first thread displays nos. 
+ *from 1 to 5 it should released the lock and allow other thread to display nos. 
+ *from 1 to 5 and then previous thread will display nos. from 6 to 10 and so on.
+ */
+
+class Thrd implements Runnable
+{
+	ReentrantLock MyLock=new ReentrantLock();
+	Condition c=MyLock.newCondition();
+	 void perform()
+	{	MyLock.lock();
+				for(int i=1;i<=10;i++)
+		{
+			System.out.println(Thread.currentThread()+"\t"+i);
+			if(i==5)
+			{
+				try 
+				{
+					c.await();
+				}
+				catch (InterruptedException e) 
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			c.signalAll();
+		}
+				MyLock.unlock();
+	}
+	 public void run()
+	{
+		perform();
+	}
+}
+public class Demo
+{
+	public static void main(String[] args) 
+	{   Thrd t=new Thrd();
+		ExecutorService exec=Executors.newFixedThreadPool(2);
+		exec.execute(t);
+		exec.execute(t);
+		exec.shutdown();
+	}
+}
+
+
+

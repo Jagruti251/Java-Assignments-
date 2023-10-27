@@ -1,0 +1,90 @@
+
+Developer Side 
+
+
+package devpack;
+
+
+public class First {
+private int num;
+
+
+/**
+ * @param x 1 param constr
+ */
+public First(int x) {
+        this.num = x;
+}
+
+
+/**
+ * @return the num
+ */
+public int getNum() {
+        return num;
+}
+
+
+/**
+ * @param num the num to set
+ */
+public void setNum(int num) {
+        this.num = num;
+}
+}
+	/**
+ * 
+ */
+package devpack;
+
+
+/**
+ * @author Akash
+ *
+ */
+public class Second {
+private String name;
+
+
+/**
+ * @return the name
+ */
+public String getName() {
+        return name;
+}
+
+
+/**
+ * @param name the name to set
+ */
+public void setName(String name) {
+        this.name = name;
+}
+}
+	
+
+
+
+Client side
+
+
+package clientpack;
+
+
+import devpack.First;
+import devpack.Second;
+
+
+public class Demo {
+
+
+        public static void main(String[] args) {
+                First f = new First(12);
+                System.out.println(f.getNum());
+                f.setNum(7);
+                System.out.println(f.getNum());
+                Second s = new Second();
+                s.setName("Akash);
+                System.out.println(s.getName());
+        }
+}

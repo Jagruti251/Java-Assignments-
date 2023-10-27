@@ -1,0 +1,275 @@
+Q.1 create a class "Shape" with 2 attributes, "width" and "height". Make sure one can not access these attributes directly.
+provide accessor methods on these attributes and allow them to call from outside of your class.*/
+
+ class shape 
+{
+	private int width, height;
+	
+	public void setWidth(int width) 
+	{
+		this.width=width;
+	}
+	public int getWidth()
+	{
+		return width;
+	}
+	
+	public void setHeight(int height) 
+	{
+		this.height=height;
+	}
+	public int getHeight()
+	{
+		return height;
+	}
+
+	
+}
+public class Demo
+{
+	public static void main(String[] args) 
+	{
+		shape s1= new shape();
+		s1.setWidth(30);
+		System.out.println("width:"+s1.getWidth());
+		s1.setHeight(24);
+		System.out.println("height"+s1.getHeight());
+	}
+}
+
+Q.2 Define a class "MyClass" and make sure clients can instantiate it , 
+a) without any argument
+b) with one int argument
+c) with two int arguments
+
+	here you need to define 3 constructors inside "MyClass".
+		default constructor, one parameterized and two parameterized constructor*/
+
+public class MyClass
+{
+	private int a, b;
+	public MyClass()
+	{
+        System.out.println("In Default Const");
+	}
+	public MyClass(int a)
+	{
+		this.a=a;
+        System.out.println("In one Parameterized Const");
+
+	}
+	public MyClass(int a,int b)
+	{
+		this.a=a;
+		this.b=b;
+        System.out.println("In two Parameterized Const");
+
+	}
+	public static void main(String[] args) 
+	{
+		// TODO Auto-generated method stub
+		MyClass m1= new MyClass();
+		MyClass m2= new MyClass(2);
+		MyClass m3= new MyClass(3,6);
+
+
+		
+	}
+
+}
+
+
+Q.3  Define a class "Emp" with private static member "int cnt".
+How will u make sure that outsiders can read the value of cnt ?
+
+class Emp
+{
+	private static int cnt=34;
+	
+	 public static int getCnt()
+	{
+	    return cnt;
+	}
+	
+	public static void main(String args[])
+	{
+		Emp e1=new Emp();
+		System.out.println(e1.getCnt());
+		
+	}
+}
+
+Q.4 Define a class "DemoOb". 
+create an instance of it.
+now create a reference and assign the reference created in the above statement.
+	Discuss what happens?
+Now since u have 2 references, take one of the reference and assign a new instance of the class.
+	Discuss what happens?
+(For ur discussion, write necessary comments in the program)
+
+public class Demo0b 
+{
+
+	private int num;
+	public void SetNum(int num)
+	{
+		this.num=num;
+		
+	}
+	public int disp()
+	{
+		return num;
+	}
+	public static void main(String args[])
+	{
+		Demo0b ob1=new Demo0b(); // first Instance
+		ob1.SetNum(40);      
+		System.out.println(ob1.disp());  
+		Demo0b ob2=ob1;                  //ob2 is a reference to that instance where ob1 is referring to 
+		System.out.println(ob2.disp());
+		ob1=new Demo0b();                   // here ob1 will refer to a new instance created.
+		ob1.SetNum(50);
+		System.out.println(ob2.disp());
+		System.out.println(ob1.disp());
+		
+		
+	}
+	
+
+}
+
+
+Q.5 Define 3 classes A , B and C
+in all these classes create static and nonstatic variables as well as methods.
+	Now Define a class "Demo" ,in which define "main" function. From this main function try to access all the members of A ,B  and C.
+
+
+class A
+{
+	private int num;
+	private static int cnt=0;
+    public static int getCnt() {
+		return cnt;
+	}
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
+	}
+}
+class B
+{
+	private int num;
+	private static int cnt=10;
+    public static int getCnt() {
+		return cnt;
+	}
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
+	}
+}
+class C
+{
+	private int num;
+	private static int cnt=100;
+    public static int getCnt() {
+		return cnt;
+	}
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
+	}
+}
+public class Demo
+{
+	public static void main(String []args)
+	{
+		A a1=new A();
+		B b1=new B();
+		C c1=new C();
+	a1.setNum(5);
+	b1.setNum(25);
+	c1.setNum(125);
+	
+	System.out.println(a1.getNum()+"\t"+A.getCnt());
+	System.out.println(b1.getNum()+"\t"+B.getCnt());
+	System.out.println(c1.getNum()+"\t"+C.getCnt());
+	}
+}
+
+
+Q.6 define static initializers in the above A,B and C classes and check the order of their execution.
+
+
+package studyopedia;
+
+class A
+{
+	static
+	{
+		System.out.println("in A");
+	}
+	private int num;
+	A(int num)
+	{
+		System.out.println("in A constructo");
+		this.num=num;
+	}
+	public int getNum() {
+		return num;
+	}
+}
+class B
+{
+	static
+	{
+		System.out.println("in B");
+	}
+	private int num;
+	B(int num)
+	{
+		System.out.println("in B constuctor");
+		this.num=num;
+	}
+	public int getNum() {
+		return num;
+	}
+}
+class C
+{
+	static
+	{
+		System.out.println("in C");
+	}
+	private int num;
+	C(int num)
+	{
+		System.out.println("in C constuctor");
+		this.num=num;
+	}
+	public int getNum() {
+		return num;
+	}
+}
+public class Demo
+{
+	static
+	{
+		System.out.println("in Demo ");
+	}
+	public static void main(String []args)
+	{
+		A a1=new A(10);
+		B b1=new B(20);
+		C c1=new C(30);
+	}
+}
+
+
+

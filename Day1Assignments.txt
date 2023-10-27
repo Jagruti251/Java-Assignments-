@@ -1,0 +1,347 @@
+Q.1 Arithamtic
+import java.util.Scanner;
+
+public class Arith {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println("Enter no 1: ");
+		int a = sc.nextInt();
+		System.out.println("Enter no 2: ");
+		int b = sc.nextInt();
+
+		System.out.println("Addition: " + (a + b));
+	}
+}
+
+
+Q.2
+import java.util.Scanner;
+
+public class Arith {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println("Enter no 1: ");
+		int a = sc.nextInt();
+		System.out.println("Enter no 2: ");
+		int b = sc.nextInt();
+
+		System.out.println("Subtraction: " + (a - b));
+	}
+}
+
+
+Q.3
+
+import java.util.Scanner;
+
+public class Arith {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println("Enter no 1: ");
+		int a = sc.nextInt();
+		System.out.println("Enter no 2: ");
+		int b = sc.nextInt();
+
+		System.out.print("Multiplication: " + (a * b));
+	}
+}
+
+
+Q.4
+import java.util.Scanner;
+
+public class MyClass {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println("Enter no 1: ");
+		int a = sc.nextInt();
+		System.out.println("Enter no 2: ");
+		int b = sc.nextInt();
+
+		System.out.print("Division: " + (a / b));
+	}
+}
+
+
+Q.5
+import java.util.Scanner;
+
+public class MyClass {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println("Enter no 1: ");
+		int a = sc.nextInt();
+		System.out.println("Enter no 2: ");
+		int b = sc.nextInt();
+
+		if (a == b)
+			System.out.print("equal");
+		else if (a > b)
+			System.out.println("no 1 is greater");
+		else
+			System.out.println("no 2 is greater");
+	}
+}
+
+
+
+Q.6
+
+import java.util.Scanner;
+
+public class Arith 
+{
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println("Enter a no: ");
+		int n = sc.nextInt();
+
+		if (n % 3 == 0)
+			System.out.println(n + " is divisible by 3");
+		else
+			System.out.println(n + " is not divisible by 3");
+	}
+}
+
+
+Q.1
+
+import java.util.*;
+public class Cflow{
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter a Number: ");
+		int n = sc.nextInt();
+		
+		for (int i=1; i<=10; i++) {
+			System.out.println(n+"x"+i+"="+(n*i));
+		}
+		
+		sc.close();
+	}
+
+}
+
+Q.2
+import java.util.*;
+public class Cflow{
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter 2 Numbers: ");
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+		int c=0;
+		
+		System.out.println("Enter an Operator: ");
+		int o = sc.next().charAt(0);
+		
+		switch(o) {
+		case '+' : System.out.println(a+b); break;
+		case '-' : System.out.println(a-b); break;
+		case '*' : System.out.println(a*b); break;
+		case '/' : System.out.println(a/b); break;
+		case '%' : System.out.println(a%b); break;
+		default : System.out.println("invalid choice");
+		}
+		
+		sc.close();
+	}
+
+}
+
+Q.3
+import java.util.*;
+public class Cflow{
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter 2 Numbers: ");
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+		int c=0;
+		
+		System.out.println("Enter an Operator: ");
+		int o = sc.next().charAt(0);
+		
+		switch(o) {
+		case '+' : System.out.println(a+b); break;
+		case '-' : System.out.println(a-b); break;
+		case '*' : System.out.println(a*b); break;
+		case '/' : System.out.println(a/b); break;
+		case '%' : System.out.println(a%b); break;
+		default : System.out.println("invalid choice");
+		}
+		
+		sc.close();
+	}
+
+}
+
+Q.4
+public class MyClass {
+
+	public static void main(String[] args) {
+		for(int i=3; i<=30; i++) {
+			if(i==24)
+				continue;
+			System.out.println(i);
+		}
+	}
+}
+
+Q.5
+import java.util.*;
+public class Cflow{
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter Marks: ");
+		Double marks = sc.nextDouble();
+		
+		if(marks>=90)
+			System.out.println("distinction");
+		else if(marks>=75)
+			System.out.println("first class");
+		else if(marks>=60)
+			System.out.println("second class");
+		else if(marks>=35)
+			System.out.println("pass");
+		else 
+			System.out.println("fail");
+		
+		sc.close();
+	}
+
+}
+
+Q.6
+public class Cflow{
+
+	public static void main(String[] args) {
+		for (int i = 3; i <= 30; i = i + 2) {
+			boolean flag = true;
+			for (int j = 2; j <= i / 2; j++) {
+				if (i % j == 0) {
+					flag = false;
+					break;
+				}
+			}
+			if (flag)
+				System.out.println(i);
+		}
+	}
+}
+
+
+Q.7
+
+public class MyClass {
+
+	public static void main(String[] args) {		
+		for (char c='A'; c<='C'; c++) {
+			for (char ch='a'; ch<='c'; ch++)
+				System.out.println(c+"\t"+ch);
+			System.out.println();
+		}
+	}
+}
+
+
+Q.8
+
+1.
+public class Pattern {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+           int i,j,s;
+           for(i=1;i<=5;i++)
+           {
+        	   for(s=i;s<=4;s++)
+        	   {
+         		  System.out.print(" "); 
+ 
+        	   }
+        	   for(j=1;j<=i;j++)
+        	   {
+        		  System.out.print("* "); 
+        	   }
+     		  System.out.println(" "); 
+
+           }
+           
+	}
+
+}
+
+
+2.
+public class Pattern {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+           int i,j,s;
+           for(i=4;i>=1;i--)
+           {
+        	   for(s=i;s<=3;s++)
+        	   {
+         		  System.out.print(" "); 
+ 
+        	   }
+        	   for(j=1;j<=i;j++)
+        	   {
+        		  System.out.print("* "); 
+        	   }
+     		  System.out.println(" "); 
+
+           }
+           
+	}
+
+}
+
+3.
+
+public class Pattern {
+
+	public static void main(String[] args) 
+	{
+		for (int i = 1; i <= 4; i++) 
+		{
+			
+			for (int s = i; s < 4; s++)
+				System.out.print(" ");
+			   
+			      for (int j = 1; j <= i; j++)
+				      System.out.print("* ");
+			System.out.println();
+		}
+		     for (int i = 1; i <= 3; i++) 
+		     {
+			      for (int s = i; s >= 1; s--)
+				         System.out.print(" ");
+			         for (int j = i; j <= 3; j++)
+				             System.out.print("* ");
+			System.out.println();
+		}
+	}
+}
+
